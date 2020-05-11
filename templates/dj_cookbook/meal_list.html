@@ -1,0 +1,18 @@
+{% extends 'dj_cookbook/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+	<h1>All Meals</h1>
+	<ul> 
+	  {% for object in object_list %} 
+	    <li><a href="{% url 'meal-detail' pk=object.id %}">{{object.name }}</a></li> 
+	  {% empty %} 
+	    <li>No meals yet.</li> 
+	  {% endfor %} 
+	</ul> 
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'dj_cookbook/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+	<h1>{{ object.name }}</h1>
+
+	<h4>{{ object.get_type_display }}</h4>
+
+	<h4>Nutrition</h4>
+	Per {{ object.unit }}
+	<table class="table">
+	  <tbody>
+	    <tr>
+	      <td>Calories</td>
+	      <td>{{ object.calories }}</td>
+	    </tr>
+	    <tr>
+	      <td>Fat</td>
+	      <td>{{ object.fat }} g</td>
+	    </tr>
+	    <tr>
+	      <td>Saturated Fat</td>
+	      <td>{{ object.satfat }} g</td>
+	    </tr>
+	    <tr>
+	      <td>Cholesterol</td>
+	      <td>{{ object.cholesterol }} mg</td>
+	    </tr>
+	    <tr>
+	      <td>Sodium</td>
+	      <td>{{ object.sodium }} mg</td>
+	    </tr>
+	    <tr>
+	      <td>Carbs</td>
+	      <td>{{ object.carbs }} g</td>
+	    </tr>
+	    <tr>
+	      <td>Fiber</td>
+	      <td>{{ object.fiber }} g</td>
+	    </tr>
+	    <tr>
+	      <td>Sugar</td>
+	      <td>{{ object.sugar }} g</td>
+	    </tr>
+	    <tr>
+	      <td>Protein</td>
+	      <td>{{ object.protein }} g</td>
+	    </tr>
+	  </tbody>     
+	  
+	</table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

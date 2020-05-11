@@ -1,0 +1,75 @@
+{% extends 'dj_cookbook/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+	<h1>{{ object.name }}</h1>
+	<h3>Seasons</h3>
+	{% if object.winter %}Winter {% endif %}{% if object.spring %}Spring {% endif %}{% if object.summer %}Summer {% endif %}{% if object.fall %}Fall{% endif %}
+	<h3>Ingredients</h3>
+
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Ingredient</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal-dialog">
+	    
+	    <!-- Modal content-->
+	    <div class="modal-content">
+              <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h4 class="modal-title">Add Ingredient</h4>
+              </div>
+              <div class="modal-body">
+		{% csrf_token %} 
+		{{ mealRecipeForm.as_p }}
+              </div>
+              <div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" id="saveRecipe" class="btn btn-success">Save</button>
+              </div>
+	    </div> 
+	  </div>
+	</div>
+	<table class="table">
+	  <thead>
+	    <th>Ingredient</th>
+	    <th>Amount</th>
+	    <th>Actions</th>
+	  </thead>
+	  <tbody>
+	    {% for recipe in object.recipe_set.all %}
+	      <tr>
+		<td>{{ recipe.ingredient }}</td>
+		<td>{{ recipe.amount }} {{ recipe.ingredient.unit }}</td>
+		<td><a href="{% url 'recipe-update' pk=recipe.id %}">Edit</a> <a href="{% url 'recipe-delete' pk=recipe.id %}">Delete</a></td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+   $('#saveRecipe').click(function(){
+       newRecipe();
+   });
+
+   function newRecipe(){
+       $("#myModal").modal('hide')
+
+       $.post("/cookbook/meals/add-recipe/",
+	      {csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+	       meal: {{ object.id }},
+	       ingredient: $("select[name=ingredient]").val(),
+	       amount: $("input[name=amount]").val()
+	      })
+	.done(function(msg){
+	    location.reload()
+	})
+   };
+   
+  </script>
+{% endblock %}
