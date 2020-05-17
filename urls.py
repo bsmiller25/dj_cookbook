@@ -2,6 +2,7 @@ from django.urls import path
 
 from dj_cookbook import views
 
+app_name='cookbook'
 urlpatterns = [
     path('', views.index, name='index'),
     #ingredients

@@ -43,7 +43,7 @@
 	      <tr>
 		<td>{{ recipe.ingredient }}</td>
 		<td>{{ recipe.amount }} {{ recipe.ingredient.unit }}</td>
-		<td><a href="{% url 'recipe-update' pk=recipe.id %}">Edit</a> <a href="{% url 'recipe-delete' pk=recipe.id %}">Delete</a></td>
+		<td><a href="{% url 'cookbook:recipe-update' pk=recipe.id %}">Edit</a> <a href="{% url 'cookbook:recipe-delete' pk=recipe.id %}">Delete</a></td>
 	      </tr>
 	    {% endfor %}
 	  </tbody>
