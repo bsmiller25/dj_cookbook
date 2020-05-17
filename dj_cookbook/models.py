@@ -29,7 +29,7 @@ class Ingredient(models.Model):
     protein = models.FloatField()
     
     def get_absolute_url(self):
-        return reverse('ingredient-detail', kwargs={'pk': self.pk})
+        return reverse('cookbook:ingredient-detail', kwargs={'pk': self.pk})
     
     def __str__(self):
         return(self.name)
@@ -42,7 +42,7 @@ class Meal(models.Model):
     fall = models.BooleanField(default=True)
 
     def get_absolute_url(self):
-        return reverse('meal-detail', kwargs={'pk': self.pk})
+        return reverse('cookbook:meal-detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return(self.name)
@@ -53,7 +53,7 @@ class Recipe(models.Model):
     amount = models.FloatField(default=1)
 
     def get_absolute_url(self):
-        return reverse('recipe-detail', kwargs={'pk': self.pk})
+        return reverse('cookbook:recipe-detail', kwargs={'pk': self.pk})
 
     
     def __str__(self):
