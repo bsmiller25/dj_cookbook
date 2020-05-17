@@ -51,6 +51,13 @@
 	  </tbody>     
 	  
 	</table>
+
+	<h3>Meals</h3>
+	{% for recipe in object.recipe_set.all %}
+	  <li><a href="{% url 'cookbook:meal-detail' pk=recipe.meal.id %}">{{ recipe.meal }}</a></li>
+	{% endfor %}
+	  
+
       </div>
     </div>
   </div>

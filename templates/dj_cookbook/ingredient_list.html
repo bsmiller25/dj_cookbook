@@ -5,14 +5,29 @@
     <div class="row justify-content-center">
       <div class="col-8">
 	<h1>All Ingredients</h1>
-	<ul> 
-	  {% for object in object_list %} 
-	    <li><a href="{% url 'cookbook:ingredient-detail' pk=object.id %}">{{object.name }}</a></li> 
-	  {% empty %} 
-	    <li>No ingredients yet.</li> 
-	  {% endfor %} 
-	</ul> 
+	<a href="{% url 'cookbook:ingredient-create' %}" class="btn btn-primary">New Ingredient</a>
+	<table class="table">
+	  <thead>
+	    <th>Name</th>
+	    <th>Unit</th>
+	    <th>Type</th>
+	    <th>Actions</th>
+	  </thead>
+	  <tbody>
+	    {% for object in object_list %}
+	      <tr>
+		<td>{{ object.name }}</td>
+		<td>{{ object.get_unit_display }}</td>
+		<td>{{ object.get_type_display }}</td>
+		<td><a href="{% url 'cookbook:ingredient-detail' pk=object.id %}"><i class="fa fa-info fa-2x"></i></a>     <a href="{% url 'cookbook:ingredient-delete' pk=object.id %}"> <i class="fa fa-trash fa-2x"></i></a> </td>
+	      </tr>
+	    {% empty %} 
+	      <li>No ingredients yet.</li> 
+	    {% endfor %}
+	  </tbody>
+	</table>
       </div>
     </div>
   </div>
 {% endblock %}
+ 

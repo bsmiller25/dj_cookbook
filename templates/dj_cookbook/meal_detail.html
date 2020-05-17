@@ -41,7 +41,7 @@
 	  <tbody>
 	    {% for recipe in object.recipe_set.all %}
 	      <tr>
-		<td>{{ recipe.ingredient }}</td>
+		<td><a href={% url 'cookbook:ingredient-detail' pk=recipe.ingredient.id %}>{{ recipe.ingredient }}</a></td>
 		<td>{{ recipe.amount }} {{ recipe.ingredient.unit }}</td>
 		<td><a href="{% url 'cookbook:recipe-update' pk=recipe.id %}">Edit</a> <a href="{% url 'cookbook:recipe-delete' pk=recipe.id %}">Delete</a></td>
 	      </tr>

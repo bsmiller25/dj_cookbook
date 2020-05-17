@@ -1,4 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -31,7 +32,6 @@ class IngredientDelete(DeleteView):
     model = Ingredient
     success_url="/cookbook/"
 
-
 class MealCreate(CreateView):
     model = Meal
     fields = "__all__"
@@ -43,6 +43,7 @@ class MealDetail(DetailView):
         context['mealRecipeForm'] = forms.MealRecipeForm()
         return context
     
+@login_required    
 def meal_add_recipe(request):
     meal = Meal.objects.get(pk=request.POST.get('meal'))
     ingredient = Ingredient.objects.get(pk=request.POST.get('ingredient'))
@@ -70,13 +71,12 @@ class RecipeCreate(CreateView):
     model = Recipe
     fields = "__all__"
 
-
 class RecipeDetail(DetailView):
     model = Recipe
 
 class RecipeList(ListView):
     model = Recipe
-    
+
 class RecipeUpdate(UpdateView):
     model = Recipe
     fields = "__all__"
@@ -84,3 +84,5 @@ class RecipeUpdate(UpdateView):
 class RecipeDelete(DeleteView):
     model = Recipe
     success_url="/cookbook/"
+
+    

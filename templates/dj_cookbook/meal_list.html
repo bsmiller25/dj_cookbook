@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
       <div class="col-8">
 	<h1>All Meals</h1>
+	<a href="{% url 'cookbook:meal-create' %}" class="btn btn-primary">New Meal</a>
 	<ul> 
 	  {% for object in object_list %} 
 	    <li><a href="{% url 'cookbook:meal-detail' pk=object.id %}">{{object.name }}</a></li> 
