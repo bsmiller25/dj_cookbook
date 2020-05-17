@@ -1,0 +1,2 @@
+recursive-include dj_cookbook/static *
+recursive-include dj_cookbook/templates *
